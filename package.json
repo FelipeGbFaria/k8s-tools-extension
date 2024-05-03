@@ -5,6 +5,7 @@
   "description": "Invoke commands from VSCode to K8s tools",
   "version": "1.0.0",
   "publisher": "Felipe Faria",
+  "repository": "https://github.com/FelipeGbFaria/k8s-tools-extension",
   "engines": {
     "vscode": "^1.88.0"
   },
