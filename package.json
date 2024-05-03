@@ -1,0 +1,68 @@
+{
+  "name": "k8s-tools",
+  "displayName": "K8s tools",
+  "icon": "resources/icon.png",
+  "description": "Invoke commands from VSCode to K8s tools",
+  "version": "1.0.0",
+  "publisher": "Felipe Faria",
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "k8s-tools.syncPod",
+        "title": "Sync pod"
+      },
+      {
+        "command": "k8s-tools.redeployAll",
+        "title": "Redeploy all pods"
+      }
+    ],
+    "configuration": {
+      "title": "K8s tools",
+      "properties": {
+        "k8s-tools.k8s-folder": {
+          "type": "string",
+          "default": "",
+          "description": "Folder to project's k8s configuration",
+          "examples": [
+            "~/projects/my-project-k8s"
+          ]
+        },
+        "k8s-tools.syncable-pods": {
+          "type": "array",
+          "title": "Pods that can be synced",
+          "items": {
+            "type": "string",
+            "title": "Pod name"
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./"
+},
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.88.0",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "@vscode/test-cli": "^0.0.8",
+    "@vscode/test-electron": "^2.3.9",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  }
+}
